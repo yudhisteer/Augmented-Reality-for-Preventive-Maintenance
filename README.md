@@ -71,6 +71,8 @@ For now an operator performs maintenance using a checklist for each individual m
 
 * **SDK: Vudoria** - The Vuforia SDK supports a variety of 2D and 3D target types including ‘markerless’ Image Targets, 3D Model Target, and a form of addressable Fiducial Marker, known as a VuMark. Vuforia provides Application Programming Interfaces (API) in C++, Java, Objective-C++, and the .NET languages through an extension to the Unity game engine.
 
+* **Shapr3D** - Shapr3D is a user-friendly, cross-platform design app that is compatible with all major desktop CAD software. We can import projects and export work directly to our rendering, manufacturing, drafting, or splicing tools. All the components of the centrifugal pump will be drawn on a 1:1 scale using Shapr3D.
+
 The app for the first phase will consist of 6 functions:
 
 ![Copy of Internship 2020 (2)](https://user-images.githubusercontent.com/59663734/133936344-e254656c-cd99-4604-8f5e-9155eb4310d9.jpg)
