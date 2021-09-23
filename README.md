@@ -313,7 +313,8 @@ https://user-images.githubusercontent.com/59663734/133921792-7a9df872-1a43-4067-
 
 The “Before and After'' panel shows how a damaged mechanical seal looks like and how a good one should be. This type of information is beneficial for new operators who have a limited experience working with mechanical seals. And it eliminates the need to google for this type of info. A user will get all he needs in one app.
 
-
-## Further Improvement
-
 ## Conclusion
+
+After a first presentation for the whole Engineering Team and the General Manager, Mr. Patrick Koo and a second one in front of the Maintenance Manager, Chief Mechanic, Chief Electrician, the General Manager and the CEO, Mr. Kendall Tang, the reviews were greatly positive. 
+
+Eager to explore more of the possibilities AR can bring to the company, they had more requests. They wanted to get live information about pressure flow, or temperature or rotational speed of the impeller. They wanted to have a dashboard which would go on to connect to their IoT system and display the values of sensors in real-time. In summary, they wanted a system using AR that would help them in monitoring their machines. This let me to do phase II of the AR app >> 
