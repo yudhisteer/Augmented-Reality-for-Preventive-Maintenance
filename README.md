@@ -1,4 +1,4 @@
-# Augmented-Reality-for-Preventive-Maintenance
+# Augmented-Reality-for-Preventive- - Phase I
 
 For my final year internship at RT Knits Ltd, my objectives were to find ways in improving the predictive/preventive maintenance of machines in the Cutting Dept. Using the “5 Whys“ tool to tackle the source of the problem, the root-cause was found to be a lack of knowledge in how the machines function which led to an improper maintenance. This result in the time interval between successive maintenance to wane.
 
