@@ -298,15 +298,22 @@ We create a Canvas where we will insert our Button and Panel. We again click and
 
 https://user-images.githubusercontent.com/59663734/133921783-e517cf9b-42b1-428d-af88-7a53e4ffa9fd.mp4
 
-
-
 ### Function 6: Maintenance
 
+The purpose of the maintenance function is to eliminate the weekly or monthly maintenance checklist that guides a maintenance operator on how to do the maintenance. We would like to display the information of how to do the maintenance, what milestones to achieve and where to check for possible damages all within the app.
 
+As a test, we would like to start with maintenance of the flange and mechanical seal. So we create the information panel we would like to display.
+
+![image](https://user-images.githubusercontent.com/59663734/134485709-53f475ca-996e-494f-967e-456d002950e5.png)
+
+Similar to the Specification Panel, we download the images as PNG and upload them to Unity.
+We upload them in the Scene Panel and adjust their dimensions using the Scale Tool. We need to check as often as possible for the orientation and scale of the images as the values of X,Y and Z in unity are not in metres or millimetres but in Unity Units.
 
 https://user-images.githubusercontent.com/59663734/133921792-7a9df872-1a43-4067-abed-3f37c8b524f1.mp4
 
+The “Before and After'' panel shows how a damaged mechanical seal looks like and how a good one should be. This type of information is beneficial for new operators who have a limited experience working with mechanical seals. And it eliminates the need to google for this type of info. A user will get all he needs in one app.
 
-# Further Improvement
 
-# Conclusion
+## Further Improvement
+
+## Conclusion
