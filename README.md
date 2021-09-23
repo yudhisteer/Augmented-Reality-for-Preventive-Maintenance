@@ -95,16 +95,43 @@ We should also test our guide view using the MTG app in our mobile to be sure th
 ## 3. Building the App 
 
 ### Function 1: Specification
+With the "Specification" function, we want to show the specs and asset information of the pump. Specs include data on **suction/delivery size, flow capacity, power rating and so on.** And the Asset information includes the **asset code, model type, status and so on.** 
+
+When uploading the model target package, Unity would create a Model Target Object with the pump situated at the origin. We then upload the JPG pictures(Information panels) in Unity and then make them a child of the Model Target. We adjust the pictures w.r.t the pump model target and run the file. We want to show the inflow and outflow direction of water. A prefab of a Realistic Waterfall FX that could work. When importing it to Unity, we need to configure its settings for it to work in our context. I created a Game Object named **alpha_watefall** and then add the FX effects and sound that would make the water flow realistically.
+
+For the water to animate endlessly, we need to write a script in order to adjust the flow of the water. We do this by initializing a public object speedx and speedy at the top. Time. deltaTime is the amount of seconds it takes for the engine to process the previous frame. Using equation **Distance = speed x time**, we get the distance we want to project the flow of water in direction X or Y using offsetx or offsety.
+
+```
+public class AnimatedUVs : MonoBehaviour {
+		public float speedY = 0.5F;
+		public float speedx = 0.0F;
+		private float offsety = 0.0F;
+		private float offsetx = 0.0F;
+		private Renderer rend;
+		void Start() {
+				rend = GetComponent<Renderer>();
+		}
+		void Update() {
+				offsety += Time.deltaTime * speedY;
+				offsetx += Time.deltaTime * speedx;
+				rend.material.SetTextureOffset("_MainTex", new Vector2(offsetx,offsety));
+		}
+}
+```
 
 
-
-
+![image](https://user-images.githubusercontent.com/59663734/134480484-d25ef6a5-f00b-4be5-a6b7-e28a6f18b3a8.png)
 
 
 https://user-images.githubusercontent.com/59663734/133890710-73dc6b6a-fcc7-48f2-86aa-fcfde5e88da6.mp4
 
 
 ### Function 2: Simulation
+The goal of the "Simulation" function is to show the working of the pump as it would be in real-life. It should show where water comes in and goes out and how the impeller works in this context. 
+
+We do not need to show the whole pump in this function so we hide the pump model in white. The model target pump gives us the origin to add more 3D objects on top hence, we have a reference point to add the impeller.
+
+
 
 https://user-images.githubusercontent.com/59663734/133890872-d2a9d460-c231-46df-b46e-8af01116a647.mp4
 
