@@ -97,7 +97,25 @@ We should also test our guide view using the MTG app in our mobile to be sure th
 ### Function 1: Specification
 With the "Specification" function, we want to show the specs and asset information of the pump. Specs include data on **suction/delivery size, flow capacity, power rating and so on.** And the Asset information includes the **asset code, model type, status and so on.** 
 
-When uploading the model target package, Unity would create a Model Target Object with the pump situated at the origin. We then upload the JPG pictures(Information panels) in Unity and then make them a child of the Model Target. We adjust the pictures w.r.t the pump model target and run the file. We want to show the inflow and outflow direction of water. A prefab of a Realistic Waterfall FX that could work. When importing it to Unity, we need to configure its settings for it to work in our context. I created a Game Object named **alpha_watefall** and then add the FX effects and sound that would make the water flow realistically.
+
+
+![image](https://user-images.githubusercontent.com/59663734/134480484-d25ef6a5-f00b-4be5-a6b7-e28a6f18b3a8.png)
+
+When uploading the model target package, Unity would create a Model Target Object with the pump situated at the origin. We then upload the JPG pictures(Information panels) in Unity and then make them a child of the Model Target. We adjust the pictures w.r.t the pump model target and run the file. 
+
+
+https://user-images.githubusercontent.com/59663734/133890710-73dc6b6a-fcc7-48f2-86aa-fcfde5e88da6.mp4
+
+
+### Function 2: Simulation
+The goal of the "Simulation" function is to show the working of the pump as it would be in real-life. It should show where water comes in and goes out and how the impeller works in this context. 
+
+We do not need to show the whole pump in this function so we hide the pump model in white. The model target pump gives us the origin to add more 3D objects on top hence, we have a reference point to add the impeller.
+
+We want to show the inflow and outflow direction of water. A prefab of a Realistic Waterfall FX that could work. When importing it to Unity, we need to configure its settings for it to work in our context. I created a Game Object named **alpha_watefall** and then add the FX effects and sound that would make the water flow realistically.
+
+![image](https://user-images.githubusercontent.com/59663734/134482607-0ae21ed7-c505-4ece-9032-e53101d2bda8.png)
+
 
 For the water to animate endlessly, we need to write a script in order to adjust the flow of the water. We do this by initializing a public object speedx and speedy at the top. Time. deltaTime is the amount of seconds it takes for the engine to process the previous frame. Using equation **Distance = speed x time**, we get the distance we want to project the flow of water in direction X or Y using offsetx or offsety.
 
@@ -119,37 +137,164 @@ public class AnimatedUVs : MonoBehaviour {
 }
 ```
 
-
-![image](https://user-images.githubusercontent.com/59663734/134480484-d25ef6a5-f00b-4be5-a6b7-e28a6f18b3a8.png)
-
-
-https://user-images.githubusercontent.com/59663734/133890710-73dc6b6a-fcc7-48f2-86aa-fcfde5e88da6.mp4
-
-
-### Function 2: Simulation
-The goal of the "Simulation" function is to show the working of the pump as it would be in real-life. It should show where water comes in and goes out and how the impeller works in this context. 
-
-We do not need to show the whole pump in this function so we hide the pump model in white. The model target pump gives us the origin to add more 3D objects on top hence, we have a reference point to add the impeller.
-
-
-
 https://user-images.githubusercontent.com/59663734/133890872-d2a9d460-c231-46df-b46e-8af01116a647.mp4
 
 
 
 ### Function 3: Working
+Function 3 should constitute the full working mechanisms of the pump - pipe connecting to flanges, shafts, impeller, mechanical seal and motor. What we want to demonstrate in this function is how the pump works.
+
+Since we already draw the pump in 3D and the pipes, we need to connect an AC motor at the end. We also want to see the impeller rotate. To do so, we write a C# script which will continuously rotate the impeller:
+
+```
+public class RotateScript : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Rotate(new Vector3(200, 0, 0) * Time.deltaTime);
+    }
+}
+```
+
+Basically a Vector3(0,0,0) is a position on the 3D space. First 0 is the X axis, second one is Y axis and third 0 is Z axis. You can use it to set some GameObject over an exact position or even to move something over time on the desired axis only, using the "Update method" for example.
+
+Every object in a Scene has a Transform. It's used to store and manipulate the position, rotation and scale of the object. Every Transform can have a parent, which allows you to apply position, rotation and scale hierarchically. This is the hierarchy seen in the Hierarchy pane. 
+
+While this will give a user a good indication of the working of a pump, we will still need to explain what each part does. For example, what is the function of a mechanical seal?, how is the impeller connected? and so on. The essence of this AR app is to get every information in one app. Hence, we do not want the user to google or go on YouTube to search for it. Instead what I did is embed a YouTube video explaining the function of the pump inside the project.
+
+![image](https://user-images.githubusercontent.com/59663734/134483946-e254d2ae-55da-4596-a485-5619d8db3d8a.png)
+
+We start by searching a YouTube video of our choice and download it to MP4. Next, we import it in Unity. We create a plane in Unity and position it where we would want the video to be displayed. Then, we click on “Add Component” to the plane and add the video we downloaded. We configure the settings such as “Loop”, “Play on awake” and so on. 
+
 
 https://user-images.githubusercontent.com/59663734/133922312-36de52ac-cff6-49f6-ab13-9c3bae6c5f4a.mp4
 
 
-
 ### Function 4: X-section
+What we want to show in this function is the anatomy of the pump. We want to show the user how the inside of the pump is, that is, the connections without him disassembling the pump. We start by doing different cross-sections along different planes(X, Y , and X&Y).
 
+![image](https://user-images.githubusercontent.com/59663734/134484292-5ce8abcb-5e6f-4b04-adff-db5dd4c8e50b.png)
+
+Unity accepts files in OBJ or FBX, hence we can use a software like “CAD Exchanger” to convert our files. We need to import one X-section 3D file at a time in one Scene. We start by importing the Y-plane x-section.
+
+![image](https://user-images.githubusercontent.com/59663734/134484448-f049201e-fecd-499e-a501-b44253cff13e.png)
+
+Now we need to label the parts. We start by adding a “3D Text” and change the text to what we want. We also want to show a line pointing the text to the part. In Unity we cannot add 2D objects as such. Instead we add a 3D Cylinder object and with the Scale Tool we change its dimensions to make it the line we want. The result should be as such:
 
 https://user-images.githubusercontent.com/59663734/133921766-1b29266d-2f22-4617-a24e-93ce0c7eefb8.mp4
 
 
 ### Function 5: Exploded View
+In the Exploded-View function, we want to show the disassembling procedure of the machine, the number of parts it contains and its names, but most importantly this will help the maintenance operators to disassemble the machine virtually. Without picking a screw driver or a wrench, we intend to make the disassembling process similar if it was done in real-life.
+
+We start by importing the full 3D model of the pump in FBX format. We group the parts that will explode at the same time, for example, the bolts and nuts of the flanges. I named it from 1st to 10th and the parts that will not explode are left as it was. Next, we create the Endpoints, the position we would want our 3D parts to move when being exploded, as empty GameObjects. For example, the top bots and nuts have coordinates (0,0,0) and we would want to displace it only in the Z-axis. Hence, we create an empty GameObject of coordinates (0,0,0.297). We repeat the process for the other 9 parts.
+
+![image](https://user-images.githubusercontent.com/59663734/134484834-b5eec3a5-177a-43a1-8ed1-c1e9c56cc446.png)
+
+Next we need to write a script that would take the initial position of the parts, the final position and displace them to their final position when pressing a button.
+
+We start by calling the libraries we would need:
+
+```
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.UI;
+```
+
+Next, I created a counter for the ten 3D parts that will be exploded and initialize their initial positions. Then, the button will initially have the “Explode” text written on it before exploding and “Combine” text on it after exploding such that when pressing on the latter will combine all the parts.
+
+```
+    void Start()
+    {
+        Counter = 0;
+        for(int i = 0; i < 10; i++)
+        {
+            tempPos[i].x = transform[i].position.x;
+            tempPos[i].y = transform[i].position.y;
+            tempPos[i].z = transform[i].position.z;
+        }        
+    }
+
+    public void onExplode()
+    {
+        if (isExplode)
+        {
+            isExplode = false;
+            btn.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Explode";
+        }
+        else if (!isExplode)
+        {
+            isExplode = true;
+            btn.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Combine";
+        }
+        turn[Counter] = true;
+    }
+```
+
+If someone presses on the “Explode” button, the parts will move to their respective Endpoints and the Counter will start from 0 to 9. When the Counter reaches 9, the panel which will display the parts name will then be shown.
+
+```
+    void Update()
+    {        
+        if (turn[Counter])
+        {
+            if (isExplode)
+            {
+                transform[Counter].position = Vector3.MoveTowards(transform[Counter].position, EndPoint[Counter].position, speed * Time.deltaTime);
+                if (transform[Counter].position == EndPoint[Counter].position)
+                {
+                    Counter++;
+                    if (Counter >= 10)
+                    {
+                        turn[Counter - 1] = false;
+                        for(int i = 0; i < Counter; i++)
+                        {
+                            transform[i].GetChild((transform[i].childCount) - 1).gameObject.SetActive(true);
+                        }
+                        Panel.SetActive(true);
+                        Counter = 9;
+                    }
+```
+
+And if the “Combine” button is pressed, the parts move back to their initial positions and the panel is stopped showing.
+
+```
+            else if (!isExplode)
+            {
+                for (int i = 0; i < Counter+1; i++)
+                {
+                    transform[i].GetChild(transform[i].childCount - 1).gameObject.SetActive(false);
+                }
+                Panel.SetActive(false);
+                transform[Counter].position = Vector3.MoveTowards(transform[Counter].position, tempPos[Counter], speed * Time.deltaTime);
+                if (transform[Counter].position == tempPos[Counter])
+                {
+                    Counter--;
+                    if (Counter <= -1)
+                    {
+                        turn[Counter + 1] = false;
+                        Counter = 0;
+                    }
+                    else
+                    {
+                        turn[Counter] = true;
+                        turn[Counter + 1] = false;
+                    }
+                }
+            }
+```
+
+We create a Canvas where we will insert our Button and Panel. We again click and drag these components into the PumpController Panel.
+
 
 https://user-images.githubusercontent.com/59663734/133921783-e517cf9b-42b1-428d-af88-7a53e4ffa9fd.mp4
 
